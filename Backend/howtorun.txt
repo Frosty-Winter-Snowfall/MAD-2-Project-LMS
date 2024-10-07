@@ -1,0 +1,29 @@
+how to run the app?
+open vs code then open new terminal
+in terminal do cd Backend
+then <  python main.py  >
+in search bar write node
+open node cmd
+there do <  cd ""  >
+then do <  npm install  >
+then do <  npm run serve  >
+
+
+how to run celery tasks?
+open cmd
+do <  cd C:\Users\Name\Downloads\Redis-x64-3.0.504  >
+do <  redis-server.exe  > 
+{check if redis is running open another cmd <  cd C:\Users\Name\Downloads\Redis-x64-3.0.504 then write redis-cli  > after it runs write ping if it sends pong its ready}
+get all the files ready and run <  python main.py  >
+then open another 2 terminals
+do cd backend
+in first write <  celery -A main.celery worker --pool=solo -l info  >
+in 2nd write <  celery -A main.celery beat --loglevel=info  >
+open the links to chheck if working 
+ex link: <  http://localhost:5000/trigger_test_task  >
+how to test if celery is working:
+run celery and beat and redis
+open new terminal
+do <  python test.py  >
+see if test email sent
+

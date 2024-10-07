@@ -1,6 +1,9 @@
 # MAD-2-Project-LMS
 This is MAD 2 project on Library Management System that i made in May 2024 term for my BS degree in Indian Institute Of Technology,Madras.It is an online library system taht manages ebooks.It has one admin that is created by default and can't be deleted  and any number of users.The admin holds maximum functionality and user can do basic ones.
 
+# ⚠️ WARNING ⚠️
+
+**REMEMBER TO CHANGE ALL PASSWORDS, EMAIL IDs, NAMES, AND API KEYS TO YOUR OWN, SINCE THEY HAVE BEEN REMOVED TO PROTECT THE PRIVACY OF THE OWNER!**
 
 
 # Modern Application Development II
@@ -214,6 +217,68 @@ Before running the application, ensure you have the following installed on your 
      npm run serve
      ```
 
+
+
+## Email Sending Configuration
+
+### Using SMTP
+
+To send emails via SMTP, you need to configure your application with the SMTP settings of your email provider. Here's a general guide:
+
+1. **SMTP Server**: Obtain the SMTP server address and port from your email provider.
+2. **Email Account**: Use the email account you want to send emails from.
+3. **Authentication**: Ensure that you have the username and password for the email account.
+
+**Example SMTP settings:**
+- SMTP Server: `smtp.your-email-provider.com`
+- Port: `587` (for TLS) or `465` (for SSL)
+- Username: `your-email@example.com`
+- Password: `your-email-password`
+
+### Using Brevo (formerly Sendinblue)
+
+You can also use Brevo (Sendinblue) to send emails through their API. Follow these steps to set it up:
+
+1. **Create an Account**: Sign up for an account at [Brevo](https://www.brevo.com/).
+2. **Generate API Key**: 
+   - Log in to your Brevo account.
+   - Navigate to **SMTP & API** in the left sidebar.
+   - Click on the **API keys** tab.
+   - Generate a new API key and copy it.
+
+3. **Integration**: Use the following code snippet to send emails using Brevo’s API:
+
+
+
+```python
+import requests
+
+api_key = "YOUR_BREVO_API_KEY"
+url = "https://api.brevo.com/v3/smtp/email"
+
+email_data = {
+    "sender": {"name": "Your Name", "email": "your-email@example.com"},
+    "to": [{"email": "recipient@example.com", "name": "Recipient Name"}],
+    "subject": "Subject of the email",
+    "htmlContent": "<html><body><h1>Hello</h1><p>This is a test email.</p></body></html>"
+}
+
+headers = {
+    "accept": "application/json",
+    "content-type": "application/json",
+    "api-key": api_key
+}
+
+response = requests.post(url, json=email_data, headers=headers)
+
+if response.status_code == 201:
+    print("Email sent successfully!")
+else:
+    print("Error sending email:", response.text)
+```
+
+
+
 ### Running Celery Tasks
 
 1. **Start Redis Server**
@@ -262,6 +327,9 @@ Before running the application, ensure you have the following installed on your 
    ```bash
    python test.py
 3.See if test email was sent
+
+
+
 
 
 

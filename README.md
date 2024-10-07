@@ -202,7 +202,7 @@ Before running the application, ensure you have the following installed on your 
 4. **Set Up the Frontend**
    - Open a new terminal and navigate to the frontend directory:
      ```bash
-     cd ../front-all codes
+     cd ../Frontend
      ```
 
 5. **Install Dependencies**
